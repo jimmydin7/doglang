@@ -1,0 +1,9 @@
+sniff age = int(14)   #this is a comment
+sniff name = string("Alex")
+
+barg(age)
+barg(name)
+
+sniff status = string("coding")
+barg("hi")
+barg(status)

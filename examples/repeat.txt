@@ -1,0 +1,5 @@
+sniff status = string("this is repeated 4 times")
+
+zoomies 4{
+    barg(status)
+}

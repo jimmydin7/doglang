@@ -1,0 +1,5 @@
+barg("Hello, world!")
+sniff age = int(14)
+goodboy age = 14 {
+    barg("You are 14!")
+}
