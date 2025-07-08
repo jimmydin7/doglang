@@ -1,5 +1,6 @@
+# dogflang: The meme programming language for dog lovers
 #AST Generator
-from .ast_nodes import VarAssign, Say, Repeat, GoodBoy
+from .ast_nodes import VarAssign, Say, Repeat, GoodBoy, Expression, FunctionDef, FunctionCall
 from helpers.utils import *
 
 class Parser:
@@ -28,6 +29,10 @@ class Parser:
                     self.ast.append(self.parse_goodboy())
                 elif token[1] == 'sniff':
                     self.ast.append(self.parse_var_assign())
+                elif token[1] == 'doggo':
+                    self.ast.append(self.parse_function_def())
+                elif token[1] == 'bark':
+                    self.ast.append(self.parse_function_call())
                 else:
                     self.error(f"Unexpected identifier {token[1]}")
             else:
@@ -40,36 +45,25 @@ class Parser:
         self.expect('EQUALS')
         datatype = self.expect('ID')[1]
         self.expect('LPAREN') # (
-
-        if datatype == 'string':
-            value_token = self.expect('STRING')
-        elif datatype == 'int':
-            value_token = self.expect('INT')
-        else:
-            self.error("Unexpected datatype")
-
-        value = value_token[1].strip('"') #remove quotes
+        value = self.parse_expression()
         self.expect('RPAREN') #)
         return VarAssign(name, datatype, value)
 
     
-    def parse_barg(self): #allowing barg("custom text")
-        self.expect('ID')                    # 'barg'
-        self.expect('LPAREN')                
-
+    def parse_barg(self):
+        self.expect('ID')  # 'barg'
+        self.expect('LPAREN')
         token = self.peek()
-        if token[0] == 'ID':
-            value = self.expect('ID')[1]
-            value_type = 'variable'
+        if token[0] == 'ID' or token[0] == 'INT':
+            value = self.parse_expression()
+            value_type = 'expression'
         elif token[0] == 'STRING':
-            raw_value = self.expect('STRING')[1]  
-            value = strip_quotes(raw_value)     
+            raw_value = self.expect('STRING')[1]
+            value = strip_quotes(raw_value)
             value_type = 'string'
         else:
-            self.error(f"Expected variable name or string, got {token}")
-
-        self.expect('RPAREN')                 # )
-
+            self.error(f"Expected variable name, int, or string, got {token}")
+        self.expect('RPAREN')
         return Say(value, value_type)
 
     def parse_zoomies(self):
@@ -128,6 +122,72 @@ class Parser:
                 self.error(f"Unexpected token {token} in goodboy body")
         self.expect('RBRACE')
         return GoodBoy(left, op, right, body)
+
+    def parse_expression(self):
+        node = self.parse_term()
+        while self.peek() and self.peek()[0] in ('PLUS', 'MINUS'):
+            op = self.expect(self.peek()[0])[1]
+            right = self.parse_term()
+            node = Expression(node, op, right)
+        return node
+
+    def parse_term(self):
+        node = self.parse_factor()
+        while self.peek() and self.peek()[0] in ('STAR', 'SLASH'):
+            op = self.expect(self.peek()[0])[1]
+            right = self.parse_factor()
+            node = Expression(node, op, right)
+        return node
+
+    def parse_factor(self):
+        token = self.peek()
+        if token[0] == 'INT':
+            return Expression(self.expect('INT')[1])
+        elif token[0] == 'ID':
+            return Expression(self.expect('ID')[1])
+        elif token[0] == 'STRING':
+            return Expression(strip_quotes(self.expect('STRING')[1]))
+        elif token[0] == 'LPAREN':
+            self.expect('LPAREN')
+            expr = self.parse_expression()
+            self.expect('RPAREN')
+            return expr
+        else:
+            self.error(f"Unexpected token in expression: {token}")
+
+    def parse_function_def(self):
+        self.expect('ID')  # 'doggo'
+        name = self.expect('ID')[1]
+        self.expect('LPAREN')
+        self.expect('RPAREN')
+        self.expect('LBRACE')
+        body = []
+        while self.peek() and self.peek()[0] != 'RBRACE':
+            token = self.peek()
+            if token[0] == 'ID':
+                if token[1] == 'barg':
+                    body.append(self.parse_barg())
+                elif token[1] == 'zoomies':
+                    body.append(self.parse_zoomies())
+                elif token[1] == 'goodboy':
+                    body.append(self.parse_goodboy())
+                elif token[1] == 'sniff':
+                    body.append(self.parse_var_assign())
+                elif token[1] == 'bark':
+                    body.append(self.parse_function_call())
+                else:
+                    self.error(f"Unexpected identifier {token[1]} in function body")
+            else:
+                self.error(f"Unexpected token {token} in function body")
+        self.expect('RBRACE')
+        return FunctionDef(name, body)
+
+    def parse_function_call(self):
+        self.expect('ID')  # 'bark'
+        name = self.expect('ID')[1]
+        self.expect('LPAREN')
+        self.expect('RPAREN')
+        return FunctionCall(name)
 
     def expect(self, expected_type):
         token = self.peek()

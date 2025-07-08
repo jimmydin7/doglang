@@ -1,3 +1,4 @@
+# dogflang: The meme programming language for dog lovers
 # Tokenizer
 import re
 from .tokens import TOKEN_TYPES

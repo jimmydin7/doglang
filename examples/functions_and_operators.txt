@@ -1,0 +1,16 @@
+# Operators and Functions in Dog Lang
+sniff a = int(5 + 3 * 2)
+sniff b = int(a - 4 / 2)
+barg(a)
+barg(b)
+
+doggo sayHello() {
+    barg("Hello from a function!")
+}
+bark sayHello()
+
+doggo mathShow() {
+    sniff x = int(10 * 2 + 1)
+    barg(x)
+}
+bark mathShow() 

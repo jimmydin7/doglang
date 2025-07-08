@@ -1,5 +1,14 @@
 barg("Hello, world!")
-sniff age = int(14)
+
+sniff age = int(14 + 1 * 2)
+barg(age)
+
+# Function definition and call
+doggo greet() {
+    barg("Woof from a function!")
+}
+bark greet()
+
 goodboy age = 14 {
     barg("You are 14!")
 }

@@ -1,7 +1,12 @@
+# dogflang: The meme programming language for dog lovers
 TOKEN_TYPES = [
     ('COMMENT',   r'#.*'),
     ('ID',        r'[a-zA-Z_][a-zA-Z0-9_]*'),
     ('EQUALS',    r'='),
+    ('PLUS',      r'\+'),
+    ('MINUS',     r'-'),
+    ('STAR',      r'\*'),
+    ('SLASH',     r'/'),
     ('INT',       r'\d+'),
     ('STRING',    r'"[^"]*"'),
     ('LPAREN',    r'\('),

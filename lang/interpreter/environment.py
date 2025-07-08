@@ -1,3 +1,5 @@
+# dogflang: The meme programming language for dog lovers
+
 # Variable storage
 
 class Environment():

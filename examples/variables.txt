@@ -7,3 +7,11 @@ barg(name)
 sniff status = string("coding")
 barg("hi")
 barg(status)
+
+sniff result = int(age + 2 * 3)
+barg(result)
+
+doggo showStatus() {
+    barg(status)
+}
+bark showStatus()

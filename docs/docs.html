@@ -1,4 +1,4 @@
-
+<!-- dogflang: The meme programming language for dog lovers -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,8 +9,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Dog Lang 🐶</h1>
-            <p>A meme programming language for dog lovers, built from scratch. Includes full <b>tokenizer</b>, <b>parser</b>, <b>interpreter</b> in Python, variables, zoomies, and more borks!</p>
+            <h1>Dog Lang 🐶 <span style="font-size:1rem; color:#888;">dogflang</span></h1>
+            <p>A meme programming language for dog lovers, built from scratch. This is the official <b>dogflang</b> project. Includes full <b>tokenizer</b>, <b>parser</b>, <b>interpreter</b> in Python, variables, zoomies, and more borks!</p>
             <!-- From Uiverse.io by kamehame-ha --> 
              <br>
              <button onclick="redirectToVideo()"
@@ -95,11 +95,6 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Comments</td>
-                            <td><code># This is a comment</code></td>
-                            <td>Single line comments using the <b>#</b> symbol</td>
-                        </tr>
-                        <tr>
                             <td>Integer Declaration</td>
                             <td><code>sniff age = int(15)</code></td>
                             <td>Declare and initialize an integer variable</td>
@@ -129,6 +124,16 @@
                             <td><code>goodboy age = 15 {<br>&nbsp;&nbsp;barg("You are 15!")<br>}</code></td>
                             <td>Run the block if the variable matches the value</td>
                         </tr>
+                        <tr>
+                            <td>Function Definition</td>
+                            <td><code>doggo greet() {<br>&nbsp;&nbsp;barg("Woof!")<br>}</code></td>
+                            <td>Define a function</td>
+                        </tr>
+                        <tr>
+                            <td>Function Call</td>
+                            <td><code>bark greet()</code></td>
+                            <td>Call a function</td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
@@ -138,20 +143,13 @@
                 
                 <h3>Hello World Program</h3>
                 <div class="code-block">
-  <span class="comment"># My first program in Dog Lang</span>
-  <br>
   <span class="function">barg</span>(<span class="string">"Hello, World!"</span>)
 </div>
                 <h3>Variable Declaration and Usage</h3>
                 <div class="code-block">
-<span class="comment"># Declare variables</span>
-<br>
 <span class="keyword">sniff age = </span> int(<span class="int">16</span>)
 <br>
 <span class="keyword">sniff name = </span> string(<span class="string">"Alice"</span>)
-<br>
-<br>
-<span class="comment"># Output variables</span>
 <br>
 <span class="function">barg</span>(name)
 <br>
@@ -159,19 +157,23 @@
                 </div>
                 <h3>Zoomies Block Demo</h3>
                 <div class="code-block">
-<span class="comment"># Repeat a statement multiple times</span>
-<br>
 <span class="keyword">zoomies 4 {</span>
 <br>&nbsp;&nbsp;<span class="function">barg</span>(<span class="string">"bark!"</span>)
 <br><span class="keyword">}</span>
                 </div>
                 <h3>Dog If Statement Demo</h3>
                 <div class="code-block">
-<span class="comment"># Doggo checks if age is 16</span>
-<br>
 <span class="keyword">goodboy age = 16 {</span>
 <br>&nbsp;&nbsp;<span class="function">barg</span>(<span class="string">"You are 16!"</span>)
 <br><span class="keyword">}</span>
+                </div>
+                <h3>Function Definition and Call</h3>
+                <div class="code-block">
+<span class="keyword">doggo greet() {</span>
+<br>&nbsp;&nbsp;<span class="function">barg</span>(<span class="string">"Woof from a function!"</span>)
+<br><span class="keyword">}</span>
+<br>
+<span class="keyword">bark greet()</span>
                 </div>
             </section>
 
@@ -250,7 +252,7 @@
         </div>
 <script>
   function redirectToVideo() {
-    window.location.href = 'https://github.com/jimmydin7/doglang';
+    window.location.href = 'video.html';
   }
 </script>
 </body>

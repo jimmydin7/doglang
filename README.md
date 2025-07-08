@@ -1,12 +1,14 @@
 # Dog Lang 🐶
+<!-- dogflang: The meme programming language for dog lovers -->
 **View demo & docs [here](https://jimmydin7.github.io/custom-programming-language/docs)**
 
 A meme programming language for dog lovers, built from scratch in Python.  
-Includes full lexer (tokenizer), parser, and interpreter. This version supports basic features like:
+This is the official **dogflang** project. Includes full lexer (tokenizer), parser, and interpreter. This version supports basic features like:
 
 - Variable declarations with `sniff` (e.g. `sniff name = string("Doggo")`)
 - Printing output using `barg()`
-- Comment support (`#` for single-line comments)
+- Arithmetic expressions with `+`, `-`, `*`, `/`
+- User-defined functions with `doggo` and `bark`
 - Repeat blocks for zoomies (`zoomies x { ... }`)
 - Dog-themed if statement: `goodboy x = 5 { ... }`
 
@@ -15,28 +17,26 @@ Includes full lexer (tokenizer), parser, and interpreter. This version supports 
 ## Example Code
 
 ```plaintext
-# Print
 barg("Hello, world!")
 
-# Define a string
+sniff x = int(2 + 3 * 4)
+barg(x)
+
 sniff myname = string("Doggo")
-
-# Define an integer
-sniff mynumber = int(42)
-
-# Output the values
 barg(myname)
-barg(mynumber)
 
-# Repeat block demo
 zoomies 3 {
     barg("bark!")
 }
 
-# Dog-themed if statement
-goodboy mynumber = 42 {
+goodboy x = 14 {
     barg("You are a good dog!")
 }
+
+doggo greet() {
+    barg("Woof from a function!")
+}
+bark greet()
 ```
 
 ---
@@ -57,22 +57,21 @@ goodboy mynumber = 42 {
 
 - [x] Integer & string variables with `sniff`
 - [x] Print with `barg()`
-- [x] Comments (`#`)
+- [x] Arithmetic expressions (`+`, `-`, `*`, `/`)
+- [x] User-defined functions (`doggo`, `bark`)
 - [x] Tokenizer and AST
 - [x] Repeat blocks (`zoomies x { ... }`)
 - [x] Dog-themed if statement (`goodboy x = value { ... }`)
 - [ ] Error handling (improved)
-- [ ] Expressions / math
 - [ ] More control flow
 
 ---
 
 ## Planned for Future Versions
 
-- Arithmetic operations (`+`, `-`, etc.)
 - More conditionals
 - Loops (`while`, `for`)
-- Functions
+- Functions with arguments
 - Type checking
 - Custom runtime errors
 

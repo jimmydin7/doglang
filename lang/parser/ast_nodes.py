@@ -1,3 +1,4 @@
+# dogflang: The meme programming language for dog lovers
 #ast nodes clasiffier
 class VarAssign:
     def __init__(self, name, datatype, value):
@@ -33,3 +34,26 @@ class GoodBoy:
 
     def __repr__(self):
         return f"GoodBoy(left={self.left!r}, op={self.op!r}, right={self.right!r}, body={self.body!r})"
+
+class Expression:
+    def __init__(self, left, op=None, right=None):
+        self.left = left
+        self.op = op
+        self.right = right
+    def __repr__(self):
+        if self.op:
+            return f"Expression({self.left!r} {self.op!r} {self.right!r})"
+        return f"Expression({self.left!r})"
+
+class FunctionDef:
+    def __init__(self, name, body):
+        self.name = name
+        self.body = body
+    def __repr__(self):
+        return f"FunctionDef(name={self.name!r}, body={self.body!r})"
+
+class FunctionCall:
+    def __init__(self, name):
+        self.name = name
+    def __repr__(self):
+        return f"FunctionCall(name={self.name!r})"
