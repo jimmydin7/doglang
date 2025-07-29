@@ -1,3 +1,21 @@
+# Doglang Web Playground
+
+A Flask-based web playground is included for Doglang! You can write Doglang code in your browser, click 'Run', and see the output instantly.
+
+## How to use
+
+1. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+2. Start the web playground:
+   ```
+   python web_playground.py
+   ```
+3. Open your browser and go to http://127.0.0.1:5000/
+
+---
+
 # Dog Lang 🐶
 <!-- dogflang: The meme programming language for dog lovers -->
 **View demo & docs [here](https://jimmydin7.github.io/custom-programming-language/docs)**

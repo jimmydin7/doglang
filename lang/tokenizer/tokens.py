@@ -13,7 +13,7 @@ TOKEN_TYPES = [
     ('RPAREN',    r'\)'),
     ('LBRACE',    r'\{'),
     ('RBRACE',    r'\}'),
-    ('NEWLINE',   r'\n'),
+    ('NEWLINE',   r'\r?\n'),
     ('SKIP',      r'[ \t]+'),
     ('MISMATCH',  r'.'),
 ]

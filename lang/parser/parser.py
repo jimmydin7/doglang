@@ -158,8 +158,10 @@ class Parser:
     def parse_function_def(self):
         self.expect('ID')  # 'doggo'
         name = self.expect('ID')[1]
-        self.expect('LPAREN')
-        self.expect('RPAREN')
+        # Accept optional parentheses for backward compatibility
+        if self.peek() and self.peek()[0] == 'LPAREN':
+            self.expect('LPAREN')
+            self.expect('RPAREN')
         self.expect('LBRACE')
         body = []
         while self.peek() and self.peek()[0] != 'RBRACE':
@@ -185,8 +187,10 @@ class Parser:
     def parse_function_call(self):
         self.expect('ID')  # 'bark'
         name = self.expect('ID')[1]
-        self.expect('LPAREN')
-        self.expect('RPAREN')
+        # Accept optional parentheses for backward compatibility
+        if self.peek() and self.peek()[0] == 'LPAREN':
+            self.expect('LPAREN')
+            self.expect('RPAREN')
         return FunctionCall(name)
 
     def expect(self, expected_type):
